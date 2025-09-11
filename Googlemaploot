@@ -1,19 +1,59 @@
-import re
-import requests
+<!DOCTYPE html>
+<html>
+<head>
+  <title>WhatsApp Redirect</title>
+  <script>
+    function redirectWhatsApp() {
+      // Numbers ka array
+      var numbers = [
+        "918368438639",
+        "919315130455",
+        "918409348661",
+        "918340102790",
+        "918792933024",
+        "919520145034",
+        "917828373132",
+        "916006265445",
+        "917693051832",
+        "917524953177",
+        "919058417817",
+        "918057527196",
+        "919241276588",
+        "919329833634",
+        "919692271854",
+        "919893398948",
+        "919851240741",
+        "917874422566",
+        "918658215979",
+        "919996982146",
+        "917569838562",
+        "919940891365",
+        "917584019904",
+        "919611979402",
+        "917417699189",
+        "917869818796",
+        "918982879912",
+        "919600412677",
+        "918003268112",
+        "919242046964",
+        "919520489674"
+      ];
 
-# Landing page link
-url = "https://www.focabooks.com/V4291E"
+      // Pehle check karo ki localStorage me number saved hai ya nahi
+      var savedNum = localStorage.getItem("selectedWhatsAppNumber");
 
-# Page content download
-response = requests.get(url)
-html_content = response.text
+      if (!savedNum) {
+        // Agar nahi hai to ek naya random number choose karo
+        savedNum = numbers[Math.floor(Math.random() * numbers.length)];
+        localStorage.setItem("selectedWhatsAppNumber", savedNum);
+      }
 
-# WhatsApp number pattern (91xxxxxxxxxx format)
-numbers = re.findall(r'91\d{10}', html_content)
-
-# Unique numbers list
-numbers = list(set(numbers))
-
-print("WhatsApp Numbers Found:")
-for num in numbers:
-    print(num)
+      // Redirect to WhatsApp
+      window.location.href = "https://wa.me/" + savedNum;
+    }
+  </script>
+</head>
+<body onload="redirectWhatsApp()">
+  <h2>Redirecting to WhatsApp...</h2>
+</body>
+</html>
