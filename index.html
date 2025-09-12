@@ -1,29 +1,160 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirect</title>
-    <script>
-        // List of random links
-        const randomLinks = [
-            "https://t.me/+AeVe2BoTijFjOTQ1", // Replace with your first link
-            "https://t.me/+AeVe2BoTijFjOTQ1", // Replace with your second link
-            "https://t.me/+AeVe2BoTijFjOTQ1"  // Replace with your third link
-        ];
-
-        // Function to select a random link and redirect
-        function randomRedirect() {
-            const randomIndex = Math.floor(Math.random() * randomLinks.length); // Randomly select an index
-            const selectedLink = randomLinks[randomIndex]; // Get the link based on the random index
-            window.location.href = selectedLink; // Redirect to the selected link
-        }
-
-        // Call the randomRedirect function on page load
-        window.onload = randomRedirect;
-    </script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>WhatsApp Random Redirect (No repeats)</title>
+  <style>
+    body { font-family: Arial, sans-serif; display:flex; align-items:center; justify-content:center; height:100vh;
+           background: linear-gradient(135deg,#0f172a,#0ea5e9); color:#fff; margin:0; }
+    .card { background: rgba(255,255,255,0.06); padding:24px; border-radius:12px; box-shadow: 0 6px 24px rgba(2,6,23,0.6); max-width:560px; width:100%; text-align:center;}
+    h1 { font-size:20px; margin:0 0 12px 0; }
+    p { margin:6px 0 8px; color: #d1d5db; }
+    .btn { background:#10b981; border:none; padding:12px 18px; border-radius:8px; color:#04201a; font-weight:700; cursor:pointer; margin:6px; }
+    .btn.secondary { background:#f59e0b; color:#1a120b; }
+    .info { margin-top:10px; color:#cbd5e1; font-size:14px; }
+    .chosen { margin-top:8px; font-weight:700; color:#fff; }
+  </style>
 </head>
 <body>
-    <!-- Body is empty; it will redirect automatically on page load -->
+  <div class="card">
+    <h1>WhatsApp Random Redirect — (No repeats)</h1>
+    <p>Har click par ek naya number khulega — repeat tab tak nahi hoga jab tak saare numbers use na ho jaayen.</p>
+    <div>
+      <button id="goBtn" class="btn">Redirect to next number</button>
+      <button id="resetBtn" class="btn secondary">Reset list</button>
+    </div>
+    <div class="info" id="remainingInfo"></div>
+    <div class="chosen" id="chosenInfo"></div>
+    <small style="display:block;margin-top:10px;color:#94a3b8;">Note: Mobile par wa.me WhatsApp app kholega; desktop par WhatsApp Web.</small>
+  </div>
+
+  <script>
+    // ====== Yahan aapke numbers (jaise aapne diye) daale gaye hain ======
+    const ORIGINAL_NUMBERS = [
+"918368438639",
+"919315130455",
+"918409348661",
+"918340102790",
+"918792933024",
+"919520145034",
+"917828373132",
+"916006265445",
+"917693051832",
+"917524953177",
+"919058417817",
+"918057527196",
+"919241276588",
+"919329833634",
+"919692271854",
+"919893398948",
+"919851240741",
+"917874422566",
+"918658215979",
+"919996982146",
+"917569838562",
+"919940891365",
+"917584019904",
+"919611979402",
+"917417699189",
+"917869818796",
+"918982879912",
+"919600412677",
+"918003268112",
+"919242046964",
+"919520489674"
+    ];
+    // ===============================================================
+
+    const STORAGE_KEY = 'wa_numbers_remaining_v1'; // change key to reset stored state if needed
+    const defaultMessage = encodeURIComponent("Hi 👋");
+
+    function shuffle(arr) {
+      // Fisher-Yates shuffle (in-place)
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    function loadRemaining() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return initRemaining();
+        const parsed = JSON.parse(raw);
+        if (!Array.isArray(parsed) || parsed.length === 0) return initRemaining();
+        return parsed;
+      } catch (e) {
+        return initRemaining();
+      }
+    }
+
+    function initRemaining() {
+      const arr = shuffle(ORIGINAL_NUMBERS.slice());
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(arr));
+      return arr;
+    }
+
+    function saveRemaining(arr) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(arr));
+    }
+
+    function pickNext() {
+      let remaining = loadRemaining();
+      if (remaining.length === 0) {
+        // Re-init (reshuffle) if empty
+        remaining = initRemaining();
+      }
+      // Take the last element (pop) to avoid shifting array each time
+      const chosen = remaining.pop();
+      saveRemaining(remaining);
+      return {chosen, remaining};
+    }
+
+    function openWhatsAppFor(number) {
+      const digits = (number + '').replace(/\D/g,'');
+      // Open wa.me link in new tab so user can return to page
+      const url = `https://wa.me/${digits}?text=${defaultMessage}`;
+      window.open(url, '_blank', 'noopener');
+    }
+
+    // UI helpers
+    const remainingInfo = document.getElementById('remainingInfo');
+    const chosenInfo = document.getElementById('chosenInfo');
+    const goBtn = document.getElementById('goBtn');
+    const resetBtn = document.getElementById('resetBtn');
+
+    function updateUI() {
+      const remaining = loadRemaining();
+      remainingInfo.textContent = `Remaining numbers in this cycle: ${remaining.length} / ${ORIGINAL_NUMBERS.length}`;
+      chosenInfo.textContent = '';
+    }
+
+    goBtn.addEventListener('click', function() {
+      const {chosen, remaining} = pickNext();
+      chosenInfo.textContent = `Chosen number: ${chosen} (opening...)`;
+      updateUI();
+      // small delay so user sees chosen number before tab opens
+      setTimeout(() => openWhatsAppFor(chosen), 200);
+    });
+
+    resetBtn.addEventListener('click', function() {
+      if (confirm('Kya aap list ko reset karna chahte hain? (Ye saved remaining list ko clear karega)')) {
+        const arr = initRemaining();
+        updateUI();
+        alert('List reset ho gayi hai.');
+      }
+    });
+
+    // Initialize UI on load
+    updateUI();
+
+    // Optional: if you want automatic redirect on page load, uncomment next lines:
+    // window.addEventListener('load', function() {
+    //   const {chosen} = pickNext();
+    //   openWhatsAppFor(chosen);
+    // });
+  </script>
 </body>
-</html>
+    </html>
