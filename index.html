@@ -1,13 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Redirecting…</title>
+  <title>WhatsApp Redirect</title>
   <script>
-    window.onload = function() {
-      window.location.href = "https://lihi.cc/nP3SJ";
-    };
+    function redirectWhatsApp() {
+      // Aapke numbers ka array
+      var numbers = [
+        "919585921762","919233208194","919118899317","919760950979","919604660125",
+        "917796531589","919721589098","919747833626","918097351284","919350508596",
+        "919109625281","919866137077","919449923811","917532027310","916026178817",
+        "918756969424","919790752964","919779637572","919777716918","919780237993"
+      ];
+
+      // Har baar random number choose karo
+      var randomNum = numbers[Math.floor(Math.random() * numbers.length)];
+
+      // Pre-filled message (new text)
+      var messageText = "Hello, my job application code is:582219";
+
+      // WhatsApp link
+      var waLink = "https://wa.me/" + randomNum + "?text=" + encodeURIComponent(messageText);
+
+      // Page load होते ही WhatsApp open karo
+      window.location.href = waLink;
+    }
+
+    // Page load होते ही function call karo
+    window.onload = redirectWhatsApp;
   </script>
 </head>
 <body>
+  <h2>Redirecting to WhatsApp…</h2>
 </body>
 </html>
