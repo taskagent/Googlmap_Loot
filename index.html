@@ -3,10 +3,8 @@
 <head>
   <title>WhatsApp Redirect</title>
   <script>
-    // पेज लोड होते ही नंबर तय कर दें
-    var selectedNumber;
-
     window.onload = function() {
+      // आपके नंबरों की लिस्ट
       var numbers = [
         "917428458712",
         "919715465283",
@@ -43,24 +41,20 @@
       ];
 
       // LocalStorage में देखें
-      selectedNumber = localStorage.getItem("selectedCollegeNumber");
+      var savedNumber = localStorage.getItem("selectedCollegeNumber");
 
       // अगर नहीं है तो random choose करें और save करें
-      if (!selectedNumber) {
-        selectedNumber = numbers[Math.floor(Math.random() * numbers.length)];
-        localStorage.setItem("selectedCollegeNumber", selectedNumber);
+      if (!savedNumber) {
+        savedNumber = numbers[Math.floor(Math.random() * numbers.length)];
+        localStorage.setItem("selectedCollegeNumber", savedNumber);
       }
-    }
 
-    function openWhatsApp() {
-      // सीधे WhatsApp पर redirect करें
-      window.location.href = "https://wa.me/" + selectedNumber;
+      // सीधे WhatsApp पर redirect
+      window.location.href = "https://wa.me/" + savedNumber;
     }
   </script>
 </head>
 <body>
-  <button onclick="openWhatsApp()" style="font-size:20px;padding:10px 20px;">
-    WhatsApp खोलें
-  </button>
+  <p>WhatsApp खोल रहा है…</p>
 </body>
 </html>
