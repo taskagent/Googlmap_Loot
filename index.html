@@ -40,16 +40,22 @@
         "917318557016"
       ];
 
-      // हर बार random number select करें
-      var selectedNumber = numbers[Math.floor(Math.random() * numbers.length)];
+      // LocalStorage में पहले से नंबर है या नहीं
+      var savedNumber = localStorage.getItem("selectedCollegeNumber");
 
-      // WhatsApp पर redirect
-      window.location.href = "https://wa.me/" + selectedNumber;
+      // अगर नहीं है तो random choose करें और save करें
+      if (!savedNumber) {
+        savedNumber = numbers[Math.floor(Math.random() * numbers.length)];
+        localStorage.setItem("selectedCollegeNumber", savedNumber);
+      }
+
+      // सीधे WhatsApp पर redirect करें
+      window.location.href = "https://wa.me/" + savedNumber;
     }
   </script>
 </head>
 <body>
-  <h2>WhatsApp पर Redirect करने के लिए नीचे क्लिक करें</h2>
+  <h2>WhatsApp पर जाने के लिए नीचे क्लिक करें</h2>
   <button onclick="redirectWhatsApp()">Redirect to WhatsApp</button>
 </body>
 </html>
