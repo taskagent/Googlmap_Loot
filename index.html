@@ -1,55 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>WhatsApp Redirect</title>
-  <meta charset="utf-8">
+  <title>Redirecting…</title>
   <script>
-    function redirectWhatsApp() {
-      // Aapke WhatsApp numbers ka array
-      var numbers = [
-        "919934623841",
-        "918103674958",
-        "917319780396",
-        "917406988132",
-        "919993308532",
-        "917073790830",
-        "919904846117",
-        "919572977683",
-        "918088428989",
-        "918327563596",
-        "917447089682",
-        "917465060639",
-        "919670117613",
-        "918602368406",
-        "917319780396",
-        "919863794779",
-        "918493909735",
-        "918327563596",
-        "918959552622",
-        "917726008485",
-        "916900957085",
-        "918518861470",
-        "917657921663",
-        "916263526593",
-        "917406988132",
-        "919178550298"
-      ];
-
-      // Pehle check karo localStorage me saved number hai ya nahi
-      var savedNumber = localStorage.getItem("selectedNumber");
-
-      // Agar saved number nahi mila to ek random number choose karo aur save kar lo
-      if (!savedNumber) {
-        savedNumber = numbers[Math.floor(Math.random() * numbers.length)];
-        localStorage.setItem("selectedNumber", savedNumber);
-      }
-
-      // Redirect to WhatsApp
-      window.location.href = "https://wa.me/" + savedNumber;
-    }
+    window.onload = function() {
+      window.location.href = "https://currychilli.celmi.xyz/m/Edi_YDlove776372411696252.html?utm_medium=paid&utm_source=ig&utm_id=120240464054970550&utm_content=120240464056080550&utm_term=120240464054980550&utm_campaign=120240464054970550&fbclid=PAb21jcAOgoqVleHRuA2FlbQEwAGFkaWQBqzFU3teGNnNydGMGYXBwX2lkDzU2NzA2NzM0MzM1MjQyNwABp-2PMJtd6Be_hW0qIB77tws50IJwIiapPrEzN-uDFWTVOjyiSxre7N6GM4MD_aem_OgWf2rrp6NEMMHI2f-9X3Q&brid=OgWf2rrp6NEMMHI2f-9X3Q";
+    };
   </script>
 </head>
-<body onload="redirectWhatsApp()">
-  <h2>Redirecting to WhatsApp...</h2>
+<body>
 </body>
 </html>
