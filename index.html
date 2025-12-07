@@ -1,13 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Redirecting…</title>
-  <script>
-    window.onload = function() {
-      window.location.href = "https://currychilli.celmi.xyz/m/Edi_YDlove776372411696252.html?utm_medium=paid&utm_source=ig&utm_id=120240464054970550&utm_content=120240464056080550&utm_term=120240464054980550&utm_campaign=120240464054970550&fbclid=PAb21jcAOgoqVleHRuA2FlbQEwAGFkaWQBqzFU3teGNnNydGMGYXBwX2lkDzU2NzA2NzM0MzM1MjQyNwABp-2PMJtd6Be_hW0qIB77tws50IJwIiapPrEzN-uDFWTVOjyiSxre7N6GM4MD_aem_OgWf2rrp6NEMMHI2f-9X3Q&brid=OgWf2rrp6NEMMHI2f-9X3Q";
-    };
-  </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirect</title>
+    <script>
+        // List of random links
+        const randomLinks = [
+            "https://t.me/+AeVe2BoTijFjOTQ1", // Replace with your first link
+            "https://t.me/+AeVe2BoTijFjOTQ1", // Replace with your second link
+            "https://t.me/+AeVe2BoTijFjOTQ1"  // Replace with your third link
+        ];
+
+        // Function to select a random link and redirect
+        function randomRedirect() {
+            const randomIndex = Math.floor(Math.random() * randomLinks.length); // Randomly select an index
+            const selectedLink = randomLinks[randomIndex]; // Get the link based on the random index
+            window.location.href = selectedLink; // Redirect to the selected link
+        }
+
+        // Call the randomRedirect function on page load
+        window.onload = randomRedirect;
+    </script>
 </head>
 <body>
+    <!-- Body is empty; it will redirect automatically on page load -->
 </body>
 </html>
