@@ -1,13 +1,105 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Redirecting…</title>
+  <title>Agent Support</title>
+  <meta charset="utf-8">
+
   <script>
-    window.onload = function() {
-      window.location.href = "https://asgels.xyz/";
-    };
+    function handleClick() {
+
+      // ✅ WhatsApp Agent Numbers
+      var numbers = [
+        "917408541725",
+        "916002079961",
+        "919672038532",
+        "918184867498",
+        "918467838779",
+        "919550169296",
+        "916366280791",
+        "919734083643",
+        "919126160154",
+        "919845217363",
+        "917414037807",
+        "917404737363",
+        "919395262206",
+        "916001285742",
+        "919518027404",
+        "919879524191",
+        "919395741242",
+        "917638867410",
+        "918603951016",
+        "919647938776"
+      ];
+
+      // ✅ Your Telegram Channel
+      var telegramLink = "https://t.me/+JpuxMi1EfXxkYmM1";
+
+      var now = Date.now();
+      var oneDay = 24 * 60 * 60 * 1000;
+
+      // 🔢 Click data
+      var clickData = JSON.parse(localStorage.getItem("clickData"));
+
+      if (!clickData || (now - clickData.time) > oneDay) {
+        clickData = {
+          count: 0,
+          time: now
+        };
+      }
+
+      clickData.count += 1;
+      localStorage.setItem("clickData", JSON.stringify(clickData));
+
+      // 🔁 Agent data (24 hours same)
+      var agentData = JSON.parse(localStorage.getItem("waAgent"));
+
+      if (!agentData || (now - agentData.time) > oneDay) {
+        agentData = {
+          number: numbers[Math.floor(Math.random() * numbers.length)],
+          time: now
+        };
+        localStorage.setItem("waAgent", JSON.stringify(agentData));
+      }
+
+      // 🚦 Redirect Logic
+      if (clickData.count <= 2) {
+        // WhatsApp (1st & 2nd time)
+        window.location.href = "https://wa.me/" + agentData.number;
+      } else {
+        // Telegram (3rd time onwards)
+        window.location.href = telegramLink;
+      }
+    }
   </script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 80px;
+      background: #f5f5f5;
+    }
+    button {
+      padding: 16px 32px;
+      font-size: 18px;
+      background-color: #25D366;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #1ebe5d;
+    }
+  </style>
 </head>
+
 <body>
+  <h2>Agent Support</h2>
+  <p>Agent se baat karne ke liye niche click karein 👇</p>
+
+  <button onclick="handleClick()">
+    Click here for Agent
+  </button>
 </body>
 </html>
