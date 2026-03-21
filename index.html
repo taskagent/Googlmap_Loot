@@ -1,13 +1,119 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Redirecting…</title>
-  <script>
-    window.onload = function() {
-      window.location.href = "https://t.me/+Y0KVpWU6hXgyNDNl";
-    };
-  </script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Join Channels</title>
+
+<style>
+body {
+    font-family: Arial;
+    text-align: center;
+    background: #0f172a;
+    color: white;
+}
+
+.container {
+    margin-top: 40px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    width: 90%;
+    margin: auto;
+}
+
+.btn {
+    padding: 15px;
+    font-size: 16px;
+    background: #0088cc;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.btn.joined {
+    background: #facc15;
+    color: black;
+}
+
+.whatsapp-btn {
+    background: #25D366;
+    width: 90%;
+    margin-top: 20px;
+    padding: 15px;
+    font-size: 18px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.whatsapp-btn:disabled {
+    background: gray;
+}
+</style>
+
 </head>
 <body>
+
+<div class="container">
+    <h2>Join All Telegram Channels</h2>
+
+    <div class="grid">
+        <button class="btn" onclick="joinChannel(this,0,'https://t.me/+IN25AiVSQFBhN2Y9')">Channel 1</button>
+        <button class="btn" onclick="joinChannel(this,1,'https://t.me/+mNbBfBPaTQQ2ZjI1')">Channel 2</button>
+    </div>
+
+    <button id="finalBtn" class="whatsapp-btn" disabled onclick="openWhatsApp()">
+        Then Get Agent
+    </button>
+</div>
+
+<script>
+let joined = [false, false];
+
+// 🔥 Number list
+let numbers = [
+"918957925357","919635690942","916002762643","919790664845","917641921434",
+"916266128193","918744816504","916002319152","919917860012","919798915520",
+"917799562975","919955067176","918810410379","917638949123","918257971236",
+"918261851981","917089120757","919676465742","918292238760","917993814619",
+"919008318992","916002718250","917979876626","918144132814","918623922701",
+"916002714150","917501685436","918076786638","919148606263","917337710796",
+"919623808883","918469489544"
+];
+
+function joinChannel(btn, index, link) {
+    window.open(link, "_blank");
+
+    if (!joined[index]) {
+        joined[index] = true;
+        btn.classList.add("joined");
+        btn.innerText = "Joined ✅";
+        checkAllJoined();
+    }
+}
+
+function checkAllJoined() {
+    if (joined.every(v => v === true)) {
+        document.getElementById("finalBtn").disabled = false;
+    }
+}
+
+// 🎯 RANDOM + AUTO MESSAGE
+function openWhatsApp() {
+    let randomIndex = Math.floor(Math.random() * numbers.length);
+    let selectedNumber = numbers[randomIndex];
+
+    let message = "T1357mzB1DnN"; // ✅ tumhara fixed message
+    let url = "https://wa.me/" + selectedNumber + "?text=" + encodeURIComponent(message);
+
+    window.open(url, "_blank");
+}
+</script>
+
 </body>
 </html>
