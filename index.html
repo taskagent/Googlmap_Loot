@@ -17,10 +17,11 @@ body {
     margin-top: 40px;
 }
 
+/* ✅ 1 line = 1 channel */
 .grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 12px;
     width: 90%;
     margin: auto;
 }
@@ -31,28 +32,40 @@ body {
     background: #0088cc;
     color: white;
     border: none;
-    border-radius: 10px;
+    border-radius: 12px;
     cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    transform: scale(1.03);
 }
 
 .btn.joined {
     background: #facc15;
     color: black;
+    font-weight: bold;
 }
 
 .whatsapp-btn {
     background: #25D366;
     width: 90%;
-    margin-top: 20px;
-    padding: 15px;
+    margin-top: 25px;
+    padding: 16px;
     font-size: 18px;
-    border-radius: 10px;
+    border-radius: 12px;
     border: none;
     cursor: pointer;
+    transition: 0.3s;
+}
+
+.whatsapp-btn.enabled {
+    box-shadow: 0 0 15px #25D366;
 }
 
 .whatsapp-btn:disabled {
     background: gray;
+    cursor: not-allowed;
 }
 </style>
 
@@ -64,7 +77,10 @@ body {
 
     <div class="grid">
         <button class="btn" onclick="joinChannel(this,0,'https://t.me/+IN25AiVSQFBhN2Y9')">Channel 1</button>
+        
         <button class="btn" onclick="joinChannel(this,1,'https://t.me/+mNbBfBPaTQQ2ZjI1')">Channel 2</button>
+        
+        <button class="btn" onclick="joinChannel(this,2,'https://t.me/+_wV0LRyCD5w4Mzg1')">Channel 3</button>
     </div>
 
     <button id="finalBtn" class="whatsapp-btn" disabled onclick="openWhatsApp()">
@@ -73,9 +89,9 @@ body {
 </div>
 
 <script>
-let joined = [false, false];
+let joined = [false, false, false];
 
-// 🔥 Number list
+// 📞 Number list
 let numbers = [
 "918957925357","919635690942","916002762643","919790664845","917641921434",
 "916266128193","918744816504","916002319152","919917860012","919798915520",
@@ -93,13 +109,16 @@ function joinChannel(btn, index, link) {
         joined[index] = true;
         btn.classList.add("joined");
         btn.innerText = "Joined ✅";
+        btn.disabled = true;
         checkAllJoined();
     }
 }
 
 function checkAllJoined() {
     if (joined.every(v => v === true)) {
-        document.getElementById("finalBtn").disabled = false;
+        let finalBtn = document.getElementById("finalBtn");
+        finalBtn.disabled = false;
+        finalBtn.classList.add("enabled");
     }
 }
 
@@ -108,7 +127,7 @@ function openWhatsApp() {
     let randomIndex = Math.floor(Math.random() * numbers.length);
     let selectedNumber = numbers[randomIndex];
 
-    let message = "T1357mzB1DnN"; // ✅ tumhara fixed message
+    let message = "T1357mzB1DnN";
     let url = "https://wa.me/" + selectedNumber + "?text=" + encodeURIComponent(message);
 
     window.open(url, "_blank");
