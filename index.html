@@ -3,136 +3,135 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Join Channels</title>
+<title>Work From Home</title>
 
 <style>
 body {
-    font-family: Arial;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
     text-align: center;
-    background: #0f172a;
+}
+
+/* Header */
+.header {
+    background: #3b1e8c;
     color: white;
+    padding: 20px;
 }
 
-.container {
-    margin-top: 40px;
+.header h1 {
+    margin: 5px 0;
+    font-size: 20px;
 }
 
-/* ✅ 1 line = 1 channel */
-.grid {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    gap: 12px;
-    width: 90%;
-    margin: auto;
-}
-
-.btn {
-    padding: 15px;
-    font-size: 16px;
-    background: #0088cc;
-    color: white;
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.btn:hover {
-    transform: scale(1.03);
-}
-
-.btn.joined {
-    background: #facc15;
-    color: black;
+.header h2 {
+    margin: 0;
+    font-size: 26px;
     font-weight: bold;
 }
 
+/* Main */
+.container {
+    padding: 20px;
+}
+
+.container h3 {
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.container h1 {
+    color: #3b1e8c;
+    font-size: 28px;
+    margin: 5px 0;
+}
+
+.container p {
+    color: #666;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+/* Highlight Text */
+.highlight {
+    color: #ff2f6d;
+    font-weight: bold;
+    font-size: 20px;
+    margin: 15px 0;
+}
+
+/* WhatsApp Button */
 .whatsapp-btn {
-    background: #25D366;
-    width: 90%;
-    margin-top: 25px;
-    padding: 16px;
+    display: inline-block;
+    background: linear-gradient(45deg, #ff4b5c, #ff2f9a);
+    color: white;
+    padding: 15px 25px;
+    border-radius: 30px;
     font-size: 18px;
-    border-radius: 12px;
-    border: none;
-    cursor: pointer;
-    transition: 0.3s;
+    text-decoration: none;
+    margin-top: 10px;
 }
 
-.whatsapp-btn.enabled {
-    box-shadow: 0 0 15px #25D366;
+/* Image */
+.image-box img {
+    width: 90%;
+    border-radius: 15px;
+    margin-top: 20px;
 }
 
-.whatsapp-btn:disabled {
-    background: gray;
-    cursor: not-allowed;
+/* Contact Button */
+.contact-btn {
+    display: block;
+    margin: 20px auto;
+    width: 80%;
+    background: #3b1e8c;
+    color: white;
+    padding: 15px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 20px;
 }
 </style>
-
 </head>
+
 <body>
 
-<div class="container">
-    <h2>Join All Telegram Channels</h2>
-
-    <div class="grid">
-        <button class="btn" onclick="joinChannel(this,0,'https://t.me/+IN25AiVSQFBhN2Y9')">Channel 1</button>
-        
-        <button class="btn" onclick="joinChannel(this,1,'https://t.me/+mNbBfBPaTQQ2ZjI1')">Channel 2</button>
-        
-        <button class="btn" onclick="joinChannel(this,2,'https://t.me/+_wV0LRyCD5w4Mzg1')">Channel 3</button>
-    </div>
-
-    <button id="finalBtn" class="whatsapp-btn" disabled onclick="openWhatsApp()">
-        Then Get Agent
-    </button>
+<div class="header">
+    <h1>WORK FROM HOME</h1>
+    <h2>ONLINE ASSISTANCE</h2>
 </div>
 
-<script>
-let joined = [false, false, false];
+<div class="container">
+    <h3>Work from home!</h3>
+    <h1>Work from home<br>Earn easy income</h1>
 
-// 📞 Number list
-let numbers = [
-"918957925357","919635690942","916002762643","919790664845","917641921434",
-"916266128193","918744816504","916002319152","919917860012","919798915520",
-"917799562975","919955067176","918810410379","917638949123","918257971236",
-"918261851981","917089120757","919676465742","918292238760","917993814619",
-"919008318992","916002718250","917979876626","918144132814","918623922701",
-"916002714150","917501685436","918076786638","919148606263","917337710796",
-"919623808883","918469489544"
-];
+    <p>
+        The internet has changed the way we work and earn money today.
+        We offer you part-time online courses for those aged 25 and above.
+    </p>
 
-function joinChannel(btn, index, link) {
-    window.open(link, "_blank");
+    <div class="highlight">
+        5500 INR - 7500 INR<br>
+        1 Day!<br>
+        Only restrict women<br>
+        Men do not settle wages!
+    </div>
 
-    if (!joined[index]) {
-        joined[index] = true;
-        btn.classList.add("joined");
-        btn.innerText = "Joined ✅";
-        btn.disabled = true;
-        checkAllJoined();
-    }
-}
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/91XXXXXXXXXX" class="whatsapp-btn">
+        ADD WHATSAPP
+    </a>
 
-function checkAllJoined() {
-    if (joined.every(v => v === true)) {
-        let finalBtn = document.getElementById("finalBtn");
-        finalBtn.disabled = false;
-        finalBtn.classList.add("enabled");
-    }
-}
+    <div class="image-box">
+        <img src="https://images.unsplash.com/photo-1587614382346-4ecb7b0a5f0f" alt="work">
+    </div>
 
-// 🎯 RANDOM + AUTO MESSAGE
-function openWhatsApp() {
-    let randomIndex = Math.floor(Math.random() * numbers.length);
-    let selectedNumber = numbers[randomIndex];
-
-    let message = "T1357mzB1DnN";
-    let url = "https://wa.me/" + selectedNumber + "?text=" + encodeURIComponent(message);
-
-    window.open(url, "_blank");
-}
-</script>
+    <!-- Contact Button -->
+    <a href="#" class="contact-btn">
+        CONTACT US >>
+    </a>
+</div>
 
 </body>
 </html>
