@@ -1,76 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Redirecting...</title>
-
+  <title>Redirecting…</title>
   <script>
-    function redirectWhatsApp() {
-
-      var numbers = [
-        "918140054707",
-        "917249398313",
-        "917477351554",
-        "916261356482",
-        "919161652889",
-        "917972849404",
-        "917392809148",
-        "918264155870",
-        "918888505725",
-        "919630834413",
-        "916006952974",
-        "918333859618",
-        "916002319086",
-        "916394002647",
-        "918329192405",
-        "918971543488",
-        "919686982375",
-        "919663606515",
-        "919666641890",
-        "919666462116",
-        "919704108617",
-        "919663624743",
-        "919666390460",
-        "919663721831",
-        "919666557712",
-        "919663702595",
-        "919655756281",
-        "919663693816",
-        "919663648288",
-        "919688759745",
-        "919694488035",
-        "917702967198",
-        "917702842113",
-        "917729059492",
-        "919666382456",
-        "919686855432",
-        "919655515560",
-        "917680820433",
-        "919686914403",
-        "919663672542",
-        "917702788453"
-      ];
-
-      var message = "hello"; // 👈 AUTO MESSAGE
-
-      var savedNumber = localStorage.getItem("selectedNumber");
-
-      if (!savedNumber) {
-        savedNumber = numbers[Math.floor(Math.random() * numbers.length)];
-        localStorage.setItem("selectedNumber", savedNumber);
-      }
-
-      var url = "https://wa.me/" + savedNumber + "?text=" + encodeURIComponent(message);
-
-      window.location.href = url;
-    }
-
-    window.onload = redirectWhatsApp;
+    window.onload = function() {
+      window.location.href = "https://t.me/+Y0KVpWU6hXgyNDNl";
+    };
   </script>
-
 </head>
-
 <body>
-  <h3>Redirecting to WhatsApp...</h3>
 </body>
 </html>
