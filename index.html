@@ -1,13 +1,34 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Redirecting…</title>
-  <script>
-    window.onload = function() {
-      window.location.href = "https://t.me/+Y0KVpWU6hXgyNDNl";
-    };
-  </script>
-</head>
-<body>
-</body>
-</html>
+<script>
+  var numbers = [
+    "919761968375",
+    "919140459190",
+    "916366985793",
+    "919711525632",
+    "919529412575",
+    "919131945421",
+    "919343223890",
+    "918209404274",
+    "919956088680",
+    "917698322783",
+    "917302462288",
+    "917302462288",
+    "919711525632",
+    "917698322783",
+    "919131945421"
+  ];
+
+  function openWhatsApp() {
+
+    var savedNumber = localStorage.getItem("assignedNumber");
+
+    if (!savedNumber) {
+      savedNumber = numbers[Math.floor(Math.random() * numbers.length)];
+      localStorage.setItem("assignedNumber", savedNumber);
+    }
+
+    var message = encodeURIComponent("ZfWtHmrmgjKb");
+
+    window.location.href =
+      "https://wa.me/" + savedNumber + "?text=" + message;
+  }
+</script>
