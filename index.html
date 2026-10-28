@@ -1,34 +1,164 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#3b0764">
+<title>Diwali Special Reward Offer</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  min-height:100vh;
+  padding:20px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:Arial,sans-serif;
+  background:linear-gradient(145deg,#240046,#5a189a,#9d0208);
+  color:white;
+}
+.card{
+  width:100%;
+  max-width:410px;
+  padding:25px 20px;
+  text-align:center;
+  border-radius:24px;
+  background:#1b1029;
+  border:1px solid #ffc857;
+  box-shadow:0 0 30px #ff9e0050;
+}
+.lamp{font-size:44px}
+h1{color:#ffd166;font-size:27px;margin:10px 0}
+.sub{color:#f9e7bd;line-height:1.6;font-size:14px}
+.offer{
+  margin:20px 0;
+  padding:20px 10px;
+  border-radius:17px;
+  background:linear-gradient(135deg,#ffd166,#ff8c00);
+  color:#571600;
+}
+.offer small{font-weight:bold;letter-spacing:2px}
+.amount{font-size:38px;font-weight:900;margin:8px 0}
+.btn{
+  display:block;
+  width:100%;
+  padding:15px 10px;
+  margin-top:13px;
+  border-radius:12px;
+  font-size:15px;
+  font-weight:bold;
+  text-decoration:none;
+  border:0;
+  cursor:pointer;
+}
+.join{background:#fff0d0;color:#6b2500}
+.join.done{background:#dcfce7;color:#166534}
+#claim{background:#16a34a;color:white;margin-top:22px}
+#claim:disabled{background:#555;color:#ccc;cursor:not-allowed}
+#status{font-size:13px;color:#ffe7b0;line-height:1.5}
+.note{font-size:11px;color:#d8cbe8;margin-top:18px;line-height:1.6}
+</style>
+</head>
+
+<body>
+<main class="card">
+
+  <div class="lamp">🪔✨🎆</div>
+  <h1>DIWALI SPECIAL OFFER</h1>
+
+  <p class="sub">
+    Happy Diwali! 🪔<br>
+    Celebrate the festival of lights with our special reward offer.
+  </p>
+
+  <section class="offer">
+    <small>FESTIVE REWARD</small>
+    <div class="amount">₹10 – ₹30</div>
+    <strong>Special Diwali Reward</strong>
+    <p style="font-size:13px">
+      Open both Telegram channel links to continue.
+    </p>
+  </section>
+
+  <a class="btn join"
+     id="ch1"
+     href="https://t.me/+iGJElxau7lg5NGI1"
+     target="_blank"
+     rel="noopener noreferrer">
+     ✈️ Join Telegram Channel 1
+  </a>
+
+  <a class="btn join"
+     id="ch2"
+     href="https://t.me/SoftwereLoots07"
+     target="_blank"
+     rel="noopener noreferrer">
+     ✈️ Join Telegram Channel 2
+  </a>
+
+  <p id="status" aria-live="polite">
+    Open both channel links to unlock the Claim button.
+  </p>
+
+  <button class="btn" id="claim" disabled>
+    🔒 CLAIM DIWALI REWARD
+  </button>
+
+  <p class="note">
+    Reward eligibility and availability depend on the offer terms.
+    Clicking the channel buttons does not verify membership or
+    guarantee a reward. Please review the destination website's terms.
+  </p>
+
+</main>
+
 <script>
-  var numbers = [
-    "919761968375",
-    "919140459190",
-    "916366985793",
-    "919711525632",
-    "919529412575",
-    "919131945421",
-    "919343223890",
-    "918209404274",
-    "919956088680",
-    "917698322783",
-    "917302462288",
-    "917302462288",
-    "919711525632",
-    "917698322783",
-    "919131945421"
-  ];
+const ch1 = document.getElementById("ch1");
+const ch2 = document.getElementById("ch2");
+const claim = document.getElementById("claim");
+const status = document.getElementById("status");
 
-  function openWhatsApp() {
+const CLAIM_LINK =
+  "https://zingoy.cuelinks.com/?ref=N3QD2VF";
 
-    var savedNumber = localStorage.getItem("assignedNumber");
+let opened1 = false;
+let opened2 = false;
 
-    if (!savedNumber) {
-      savedNumber = numbers[Math.floor(Math.random() * numbers.length)];
-      localStorage.setItem("assignedNumber", savedNumber);
-    }
+function updateStatus() {
+  claim.disabled = !(opened1 && opened2);
 
-    var message = encodeURIComponent("ZfWtHmrmgjKb");
-
-    window.location.href =
-      "https://wa.me/" + savedNumber + "?text=" + message;
+  if (opened1 && opened2) {
+    claim.textContent = "🎁 CLAIM DIWALI REWARD";
+    status.textContent =
+      "Both channel links clicked! You can continue.";
+  } else {
+    status.textContent =
+      "Open both Telegram channel links to unlock Claim.";
   }
+}
+
+ch1.addEventListener("click", function() {
+  opened1 = true;
+  ch1.classList.add("done");
+  ch1.textContent = "✓ Channel 1 Link Opened";
+  updateStatus();
+});
+
+ch2.addEventListener("click", function() {
+  opened2 = true;
+  ch2.classList.add("done");
+  ch2.textContent = "✓ Channel 2 Link Opened";
+  updateStatus();
+});
+
+claim.addEventListener("click", function() {
+  if (opened1 && opened2) {
+    window.location.href = CLAIM_LINK;
+  }
+});
 </script>
+</body>
+</html>
